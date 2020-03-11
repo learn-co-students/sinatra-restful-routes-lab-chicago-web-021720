@@ -57,8 +57,9 @@ describe "Recipe App" do
       expect(page.body).to include(recipe_cook_time)
     end
 
+    # NOTE: I edited the test below because I added an "Edit" button in addition to a "Delete" button.
     it "contains a form to delete the recipe" do
-      expect(page.find(:css, "form")[:action]).to eq("/recipes/#{@recipe1.id}")
+      expect(page.find_by_id("delete-form")[:action]).to eq("/recipes/#{@recipe1.id}")
     end
 
     it 'deletes via a DELETE request' do
@@ -177,7 +178,8 @@ describe "Recipe App" do
       )
       visit  "/recipes/#{@cookie.id}"
 
-      click_button "delete"
+      # NOTE: Edited to match my naming, given that I also have an "Edit" button
+      click_button "delete-button"
     end
 
     it "deletes a recipe" do
